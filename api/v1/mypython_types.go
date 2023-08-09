@@ -20,43 +20,62 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+type ServiceSpec struct {
+	Name       string `json:"name"`
+	Protocol   string `json:"protocol"`
+	Port       int32  `json:"port"`
+	TargetPort int32  `json:"targetPort"`
+	NodePort   int32  `json:"nodePort"`
+	Type       string `json:"type"`
+}
+
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// MyPythonSpec defines the desired state of MyPython
-type MyPythonSpec struct {
+// MyPythonAppSpec defines the desired state of MyPythonApp
+type MyPythonAppSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of MyPython. Edit mypython_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Foo is an example field of MyPythonApp. Edit mypythonapp_types.go to remove/update
+	CompanyName            string      `json:"companyName,omitempty"`
+	ApplicationDescription string      `json:"applicationDescription,omitempty"`
+	AppContainerName       string      `json:"appContainerName"`
+	AppImage               string      `json:"appImage"`
+	AppPort                int32       `json:"appPort"`
+	MonitorContainerName   string      `json:"monitorContainerName"`
+	MonitorImage           string      `json:"monitorImage"`
+	MonitorCommand         string      `json:"monitorCommand"`
+	Size                   int32       `json:"size"`
+	Service                ServiceSpec `json:"service"`
 }
 
-// MyPythonStatus defines the observed state of MyPython
-type MyPythonStatus struct {
+// MyPythonAppStatus defines the observed state of MyPythonApp
+type MyPythonAppStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	PodList []string `json:"podList"`
 }
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// MyPython is the Schema for the mypythons API
-type MyPython struct {
+// MyPythonApp is the Schema for the mypythonapps API
+type MyPythonApp struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   MyPythonSpec   `json:"spec,omitempty"`
-	Status MyPythonStatus `json:"status,omitempty"`
+	Spec   MyPythonAppSpec   `json:"spec,omitempty"`
+	Status MyPythonAppStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// MyPythonList contains a list of MyPython
-type MyPythonList struct {
+// MyPythonAppList contains a list of MyPythonApp
+type MyPythonAppList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []MyPython `json:"items"`
+	Items           []MyPythonApp `json:"items"`
 }
 
 func init() {
