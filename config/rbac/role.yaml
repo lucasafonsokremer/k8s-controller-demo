@@ -1,0 +1,32 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - frontend.stickers.com
+  resources:
+  - mypythons
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - frontend.stickers.com
+  resources:
+  - mypythons/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - frontend.stickers.com
+  resources:
+  - mypythons/status
+  verbs:
+  - get
+  - patch
+  - update
