@@ -1,0 +1,27 @@
+# permissions for end users to view mypythons.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: mypython-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: k8s-controller-demo
+    app.kubernetes.io/part-of: k8s-controller-demo
+    app.kubernetes.io/managed-by: kustomize
+  name: mypython-viewer-role
+rules:
+- apiGroups:
+  - frontend.stickers.com
+  resources:
+  - mypythons
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - frontend.stickers.com
+  resources:
+  - mypythons/status
+  verbs:
+  - get

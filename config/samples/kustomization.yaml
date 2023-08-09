@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- frontend_v1_mypython.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

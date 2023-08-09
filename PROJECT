@@ -7,4 +7,14 @@ layout:
 - go.kubebuilder.io/v4
 projectName: k8s-controller-demo
 repo: frontendapp
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: stickers.com
+  group: frontend
+  kind: MyPython
+  path: frontendapp/api/v1
+  version: v1
 version: "3"
