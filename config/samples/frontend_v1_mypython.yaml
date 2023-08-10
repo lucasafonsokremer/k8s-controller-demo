@@ -12,7 +12,7 @@ spec:
   companyName: Stickers Company
   applicationDescription: Emoji generator application
   appContainerName: myapp-container
-  appImage: sachinhr/my-python-app
+  appImage: lucasafonsokremer/my-python-app
   appPort: 5001
   monitorContainerName: monitoring-container
   monitorImage: busybox:latest
